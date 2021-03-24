@@ -1,7 +1,7 @@
 import './App.css';
 
 function App() {
-  return <div>E Commerce Project</div>;
+  return <div className='container'>E Commerce Project</div>;
 }
 
 export default App;
