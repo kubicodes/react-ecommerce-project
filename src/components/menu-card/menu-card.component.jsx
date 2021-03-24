@@ -1,5 +1,4 @@
 const MenuCard = ({ id, title, imageUrl }) => {
-  console.log(id, title, imageUrl);
   return (
     <div className='col mb-4'>
       <div className='card h-100'>
