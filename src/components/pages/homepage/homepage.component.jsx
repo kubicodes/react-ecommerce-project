@@ -1,7 +1,7 @@
 import MenuCards from '../../menu-cards/menu-cards.component';
 
-const Homepage = () => {
+const HomepageComponent = () => {
   return <MenuCards />;
 };
 
-export default Homepage;
+export default HomepageComponent;
