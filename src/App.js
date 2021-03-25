@@ -2,7 +2,7 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import HomepageComponent from './components/pages/homepage/homepage.component';
 import Shop from './components/pages/shop/shop.component';
-import Header from './components/Header/Header.component';
+import Header from './components/Header/header.component';
 
 function App() {
   return (
