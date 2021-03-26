@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -44,8 +45,19 @@ const SignIn = () => {
             onChange={handleChange}
           />
         </div>
-        <button type='submit' className='btn btn-primary'>
-          Submit
+        <button
+          type='submit'
+          className='btn btn-dark'
+          style={{ marginRight: '10px' }}
+        >
+          Sign in
+        </button>
+        <button
+          type='button'
+          className='btn btn-primary'
+          onClick={signInWithGoogle}
+        >
+          Sign In With Google
         </button>
       </form>
     </div>
