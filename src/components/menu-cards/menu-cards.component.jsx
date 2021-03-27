@@ -41,7 +41,7 @@ const MenuCards = () => {
   return (
     <div className='row row-cols-1 row-cols-md-3'>
       {menuData.map(({ id, title, imageUrl }) => {
-        return <MenuCard id={id} title={title} imageUrl={imageUrl} />;
+        return <MenuCard key={id} title={title} imageUrl={imageUrl} />;
       })}
     </div>
   );
