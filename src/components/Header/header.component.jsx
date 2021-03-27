@@ -1,5 +1,6 @@
 import { auth } from '../../firebase/firebase.utils';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Header = ({ currentUser }) => {
   return (
@@ -45,4 +46,9 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+//state param is the root reducer
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);

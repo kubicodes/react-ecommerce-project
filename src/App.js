@@ -4,6 +4,10 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+//redux
+import { connect } from 'react-redux';
+import { setCurrentUser } from './redux/user/user.actions';
+
 //utils
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
@@ -13,8 +17,8 @@ import Shop from './components/pages/shop/shop.component';
 import Header from './components/Header/header.component';
 import SignInAndSignUp from './components/pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 
-function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+function App(props) {
+  const { setCurrentUser } = props;
   const [unsubscribeFromAuth, setUnsubscribeFromAuth] = useState(null);
 
   useEffect(() => {
@@ -39,7 +43,7 @@ function App() {
 
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header />
       <div className='container mt-5'>
         <Switch>
           <Route exact path='/' component={HomepageComponent} />
@@ -51,4 +55,9 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user)), //dispatch: way for redux to know to pass the state to all actions
+});
+
+//app doesn´t need state as prop, so the first argument is null
+export default connect(null, mapDispatchToProps)(App);
