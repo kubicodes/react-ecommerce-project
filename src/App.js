@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 //utils
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 //components
 import HomepageComponent from './components/pages/homepage/homepage.component';
@@ -19,8 +19,16 @@ function App() {
 
   useEffect(() => {
     setUnsubscribeFromAuth(() => {
-      auth.onAuthStateChanged(user => {
-        setCurrentUser(user);
+      auth.onAuthStateChanged(async userAuth => {
+        if (userAuth) {
+          const userRef = createUserProfileDocument(userAuth);
+          (await userRef).onSnapshot(snapshot => {
+            setCurrentUser({
+              id: snapshot.id,
+              ...snapshot.data(),
+            });
+          });
+        } else setCurrentUser(userAuth); //will be null because nothing returned from userAuth
       });
     });
 
