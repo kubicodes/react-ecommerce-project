@@ -2,7 +2,7 @@
 import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux';
@@ -48,16 +48,26 @@ function App(props) {
         <Switch>
           <Route exact path='/' component={HomepageComponent} />
           <Route exact path='/shop' component={Shop} />
-          <Route exact path='/signin' component={SignInAndSignUp} />
+          <Route
+            exact
+            path='/signin'
+            render={() =>
+              props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+            }
+          />
         </Switch>
       </div>
     </div>
   );
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)), //dispatch: way for redux to know to pass the state to all actions
 });
 
 //app doesn´t need state as prop, so the first argument is null
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
