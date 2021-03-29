@@ -1,4 +1,6 @@
-const MenuCard = ({ id, title, imageUrl }) => {
+import { connect } from 'react-redux';
+
+const MenuCard = ({ title, imageUrl }) => {
   return (
     <div className='col mb-4'>
       <div className='card h-100'>

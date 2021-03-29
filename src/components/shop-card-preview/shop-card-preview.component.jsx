@@ -9,7 +9,7 @@ const ShopCardPreview = ({ data }) => {
         {data.items
           .filter((data, index) => index < 3)
           .map(item => {
-            return <ShopCard key={item.id} {...item} />;
+            return <ShopCard key={item.id} item={item} />;
           })}
       </div>
       <br />

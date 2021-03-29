@@ -1,4 +1,8 @@
-const ShopCard = ({ name, imageUrl, price }) => {
+import { connect } from 'react-redux';
+import { addItem } from '../../redux/cart/cart.actions';
+
+const ShopCard = ({ item, addItem }) => {
+  const { name, price, imageUrl } = item;
   return (
     <div className='col mb-4'>
       <div className='card h-100'>
@@ -11,11 +15,17 @@ const ShopCard = ({ name, imageUrl, price }) => {
         <div className='card-body'>
           <h5 className='card-title'>{name}</h5>
           <p className='card-title'>{`$${price}`}</p>
-          <button className='btn btn-dark'>Add to Cart</button>
+          <button className='btn btn-dark' onClick={() => addItem(item)}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default ShopCard;
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(ShopCard);
