@@ -1,8 +1,10 @@
 import { auth } from '../../firebase/firebase.utils';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light'>
       <Link className='navbar-brand' to='/'>
@@ -40,15 +42,20 @@ const Header = ({ currentUser }) => {
               </Link>
             )}
           </li>
+          <li>
+            <CartIcon />
+          </li>
         </ul>
+        {hidden ? null : <CartDropdown />}
       </div>
     </nav>
   );
 };
 
 //state param is the root reducer
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);
