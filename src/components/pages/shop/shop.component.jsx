@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import SHOP_DATA from '../../../data/ShoppingData';
 import ShopCardPreview from '../../shop-card-preview/shop-card-preview.component';
+import { connect } from 'react-redux';
+import { selectShopData } from '../../../redux/shop/shop.selectors';
+import { createStructuredSelector } from 'reselect';
 
-const Shop = () => {
-  const [shopData, setShopData] = useState(SHOP_DATA);
+const Shop = ({ shopData }) => {
   return (
     <div>
       {shopData.map(data => (
@@ -13,4 +13,7 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+const mapStateToProps = createStructuredSelector({
+  shopData: selectShopData,
+});
+export default connect(mapStateToProps)(Shop);
