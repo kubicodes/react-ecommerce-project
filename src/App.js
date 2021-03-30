@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-//redux
+//redux related
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/user/user.selectors';
 
 //utils
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
@@ -61,13 +63,12 @@ function App(props) {
   );
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = createStructuredSelector({
+  user: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)), //dispatch: way for redux to know to pass the state to all actions
 });
 
-//app doesn´t need state as prop, so the first argument is null
 export default connect(mapStateToProps, mapDispatchToProps)(App);
