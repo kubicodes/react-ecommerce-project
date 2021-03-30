@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addItem } from '../../redux/cart/cart.actions';
+import { addItemToCart } from '../../redux/cart/cart.actions';
 
 const ShopCard = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
@@ -25,7 +25,7 @@ const ShopCard = ({ item, addItem }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item)),
+  addItem: item => dispatch(addItemToCart(item)),
 });
 
 export default connect(null, mapDispatchToProps)(ShopCard);
