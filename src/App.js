@@ -18,6 +18,7 @@ import HomepageComponent from './components/pages/homepage/homepage.component';
 import Shop from './components/pages/shop/shop.component';
 import Header from './components/Header/header.component';
 import SignInAndSignUp from './components/pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './components/pages/checkout/checkout.component';
 
 function App(props) {
   const { setCurrentUser } = props;
@@ -57,6 +58,7 @@ function App(props) {
               props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
             }
           />
+          <Route exact path='/checkout' component={CheckoutPage} />
         </Switch>
       </div>
     </div>
