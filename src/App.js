@@ -14,9 +14,9 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 //components
-import HomepageComponent from './components/pages/homepage/homepage.component';
+import Homepage from './components/pages/homepage/homepage';
 import Shop from './components/pages/shop/shop.component';
-import Header from './components/Header/header.component';
+import Header from './components/header/header.component';
 import SignInAndSignUp from './components/pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './components/pages/checkout/checkout.component';
 
@@ -47,20 +47,18 @@ function App(props) {
   return (
     <div>
       <Header />
-      <div className='container mt-5'>
-        <Switch>
-          <Route exact path='/' component={HomepageComponent} />
-          <Route exact path='/shop' component={Shop} />
-          <Route
-            exact
-            path='/signin'
-            render={() =>
-              props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
-            }
-          />
-          <Route exact path='/checkout' component={CheckoutPage} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path='/' component={Homepage} />
+        <Route exact path='/shop' component={Shop} />
+        <Route
+          exact
+          path='/signin'
+          render={() =>
+            props.currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
+          }
+        />
+        <Route exact path='/checkout' component={CheckoutPage} />
+      </Switch>
     </div>
   );
 }

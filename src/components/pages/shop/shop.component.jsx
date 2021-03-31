@@ -1,19 +1,19 @@
-import ShopCardPreview from '../../shop-card-preview/shop-card-preview.component';
+import CollectionPreview from '../../collection-preview/collection-preview.component';
 import { connect } from 'react-redux';
-import { selectShopData } from '../../../redux/shop/shop.selectors';
+import { selectShopItems } from '../../../redux/shop/shop.selectors';
 import { createStructuredSelector } from 'reselect';
 
-const Shop = ({ shopData }) => {
+const Shop = ({ collections }) => {
   return (
-    <div>
-      {shopData.map(data => (
-        <ShopCardPreview key={data.id} data={data} />
+    <div className='shop-page'>
+      {collections.map(data => (
+        <CollectionPreview key={data.id} data={data} />
       ))}
     </div>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
-  shopData: selectShopData,
+  collections: selectShopItems,
 });
 export default connect(mapStateToProps)(Shop);
