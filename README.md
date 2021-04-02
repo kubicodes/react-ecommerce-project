@@ -1,6 +1,6 @@
 # Welcome
 ## This an E-Commerce Frontend Application built with React, Redux and Firebase
-#### [Live Demo](https://github.com/pandao/editor.md "Heading link")
+#### [Live Demo](https://kubicodes.github.io/react-ecommerce-project/#/ "Heading link")
 
 ## How to install and run
 
